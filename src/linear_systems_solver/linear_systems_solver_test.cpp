@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "gauss_elimination.h"
+#include "gauss_jordan.h"
 #include "lu_factorization.h"
 #include "gauss_jacobi.h"
 #include "gauss_seidel.h"
@@ -31,6 +32,38 @@ void linear_systems_solver_test::test_gauss_elimination_solver() {
     assert(result.isApprox(expected_result));
 
     std::cout << "\n\nGauss elimination test:" << std::endl;
+    std::cout << "\n\nMatrix A:\n\n";
+    std::cout << A << std::endl;
+
+    std::cout << "\n\nMatrix b:\n\n";
+    std::cout << b << std::endl;
+
+    std::cout << "\n\nResult:\n\n";
+    std::cout << result << std::endl;
+}
+
+void linear_systems_solver_test::test_gauss_jordan_elimination_solver() {
+    Eigen::MatrixXd A(3, 3);
+
+    A << -3, 2,-1,
+          6,-6, 7,
+          3,-4, 4;
+
+    Eigen::MatrixXd b(3, 1);
+    b << -1,
+         -7,
+         -6;
+
+    Eigen::VectorXd result = linear_systems_solver::gauss_jordan_solver(A, b);
+
+    Eigen::VectorXd expected_result(3, 1);
+    expected_result << 2,
+                       2,
+                      -1;
+
+    assert(result.isApprox(expected_result));
+
+    std::cout << "\n\nGauss-Jordan elimination test:" << std::endl;
     std::cout << "\n\nMatrix A:\n\n";
     std::cout << A << std::endl;
 
@@ -160,6 +193,7 @@ void linear_systems_solver_test::test_gauss_seidel_solver() {
 
 void linear_systems_solver_test::test_all() {
     test_gauss_elimination_solver();
+    test_gauss_jordan_elimination_solver();
     test_lu_factorization();
     test_lu_solver();
     test_gauss_jacobi_solver();
