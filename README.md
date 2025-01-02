@@ -31,7 +31,7 @@ Este projeto utiliza CMake para gerenciar o processo de compilação. Siga as in
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/alvaro52/metodos-numericos-I.git
+   git clone --recursive https://github.com/alvaro52/metodos-numericos-I.git
    cd metodos-numericos-I
    ```
 2. **Crie um diretório de compilação**:
