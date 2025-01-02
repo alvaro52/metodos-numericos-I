@@ -175,7 +175,7 @@ void linear_systems_solver_test::test_gauss_seidel_solver() {
 
     Eigen::VectorXd result = linear_systems_solver::gauss_seidel(A, b, 1e-12);
 
-    std::cout << "\n\nGauss Jacobi test:" << std::endl;
+    std::cout << "\n\nGauss Seidel test:" << std::endl;
     std::cout << "\n\nMatrix A:\n\n";
     std::cout << A << std::endl;
     std::cout << "\n\nMatrix b:\n\n";
