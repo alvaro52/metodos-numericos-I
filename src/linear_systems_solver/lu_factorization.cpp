@@ -20,13 +20,19 @@ linear_systems_solver::LU linear_systems_solver::lu_factorization(
 }
 
 Eigen::VectorXd linear_systems_solver::lu_solver(
-    const Eigen::MatrixXd& A,
+    const LU& lu,
     const Eigen::VectorXd& b
 ) {
-    LU lu = lu_factorization(A);
     Eigen::VectorXd y = forward_substitution(lu.L, b);
 
     return backward_substitution(lu.U, y);
+}
+
+Eigen::VectorXd linear_systems_solver::lu_solver(
+    const Eigen::MatrixXd& A,
+    const Eigen::VectorXd& b
+) {
+    return lu_solver(lu_factorization(A), b);
 }
 
 Eigen::VectorXd forward_substitution(
